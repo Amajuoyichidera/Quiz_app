@@ -16,13 +16,55 @@ const questions = [
       correct: 2,
     },
   ];
-  
-  let currentQuestion = 0;
-  let score = 0;
 
   const questionDiv = document.getElementById("questions");
   const nextBtn = document.getElementById("next");
+  const resultDiv = document.getElementById("result");
 
-  function name(params) {
-    
+  let currentQuestion = 0;
+  let score = 0;
+
+  function displayQuestions() {
+    const question = questions[currentQuestion]
+    const answerHtml = question.answers.map((answer, index) => 
+    `<li><input type="radio" name="answer" value="${index}">${answer}</li>`
+    )
+
+    questionDiv.innerHTML = `
+    <h1>${question.question}</h1>
+    <ol>${answerHtml}</ol>`
   }
+
+  function nextQuestion() {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if(!selected) {
+        alert('Choose An Answer');
+        return;
+    }
+
+    const selectedAnswer = parseInt(selected, 10);
+    if(selectedAnswer === questions[currentQuestion].correct) {
+        score++;
+    }
+    
+    currentQuestion++;
+    
+    if (currentQuestion < questions.length) {
+        displayQuestions();
+      } else {
+        showResult();
+      }
+  }
+
+  function showResult() {
+    questionDiv.style.display = 'none';
+    nextBtn.style.display = 'none';
+    resultDiv.style.display = 'block';
+
+    resultDiv.innerHTML = `
+    <h1>You Scored ${score} / ${questions.length} </h1>`;
+  }
+
+  nextBtn.addEventListener("click", nextQuestion);
+
+  displayQuestions()
