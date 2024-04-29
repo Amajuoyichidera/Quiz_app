@@ -1,18 +1,18 @@
 // Quiz questions and correct answers
 const questions = [
     {
-      question: "What is the capital of France?",
-      answers: ["Paris", "London", "Berlin", "Madrid"],
+      question: "Who Is Your President Of Nigeria?",
+      answers: ["Peter Obi", "Tinubu", "Atiku", "Jagaban"],
       correct: 0, // Correct answer index
     },
     {
-      question: "Which planet is known as the Red Planet?",
-      answers: ["Earth", "Mars", "Venus", "Jupiter"],
+      question: "Describe Nigeria",
+      answers: ["Heaven", "Hell", "Beautiful", "Amazing"],
       correct: 1,
     },
     {
-      question: "What is the square root of 64?",
-      answers: ["6", "7", "8", "9"],
+      question: "What is the Capital of Nigeria",
+      answers: ["Lagos", "Anambra", "Abuja", "Port Harcourt"],
       correct: 2,
     },
   ];
@@ -42,7 +42,7 @@ const questions = [
         return;
     }
 
-    const selectedAnswer = parseInt(selected, 10);
+    const selectedAnswer = parseInt(selected.value, 10);
     if(selectedAnswer === questions[currentQuestion].correct) {
         score++;
     }
